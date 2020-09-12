@@ -8,7 +8,6 @@ class App extends React.Component {
   state = {
     userInput: '',
     animeCharacters: [],
-    isDataLoaded: false,
     loadingMessage: '',
     pageCounter: 1
   }
@@ -21,7 +20,6 @@ class App extends React.Component {
     event.preventDefault();
     this.setState({
       animeCharacters: [],
-      isDataLoaded: false,
       loadingMessage: 'fetching...'
     });
     this.fetchData();
@@ -30,7 +28,6 @@ class App extends React.Component {
   handleLoadMore = async () => {
     let userInput = this.state.userInput;
     this.setState({
-      isDataLoaded: false,
       pageCounter: this.state.pageCounter + 1,
       loadingMessage: 'fetching...'
     })
@@ -42,12 +39,10 @@ class App extends React.Component {
         // append array in existing array.
         animeCharacters: [...this.state.animeCharacters, ...json.results], 
         loadingMessage: `${API_URL}${userInput}`,
-        isDataLoaded: true
       });
 
     } catch(err) {
       this.setState({
-        isDataLoaded: true,
         loadingMessage: 'Fetching Failed. Please retry'
       });
     }
@@ -63,7 +58,6 @@ class App extends React.Component {
         // append array in existing array.
         animeCharacters: [...this.state.animeCharacters, ...json.results], 
         loadingMessage: `${API_URL}${userInput}`,
-        isDataLoaded: true,
       });
 
     } catch(err) {
@@ -92,7 +86,7 @@ class App extends React.Component {
           <form className="search-form" onSubmit={this.handleSubmit}>
             <label className="search-form__label" htmlFor="anime-character">Type below to search for Anime</label>
             <div className="search-form__group">
-              <input id="anime-character" className="search-form__input" value={this.state.userInput} onChange={this.handleUserInput} type="text"/>
+              <input required id="anime-character" className="search-form__input" value={this.state.userInput} onChange={this.handleUserInput} type="text"/>
               <button className="search-form__button">Go</button>
             </div>
           </form>
@@ -113,8 +107,9 @@ class App extends React.Component {
               </CardContainer>
           }
           {
-            this.state.isDataLoaded && 
-            <button className="btn-load" onClick={this.handleLoadMore}>Load more</button>
+            this.state.animeCharacters.length ?
+              <button className="btn-load" onClick={this.handleLoadMore}>Load more</button>
+            : null
           }
         </main>
       </div>
