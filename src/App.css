@@ -1,38 +1,109 @@
-.App {
+/* ----- App Styles ----- */
+.app {
+  max-width: 700px;
+  padding: 20px;
+  margin: 50px auto;
+}
+.app__header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--color-blue);
+  padding: 10px 0;
+}
+
+/* ----- Form Styles ----- */
+.search-form__group {
+  display: flex;
+}
+.search-form__input {
+  font-size: 16px;
+  padding: 20px;
+  background-color: var(--color-white-transparent);
+  border: 1px solid var(--color-blue-1);
+  border-right: 0;
+  border-radius: 8px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  color: var(--color-white);
+  width: 100%;
+}
+.search-form__label {
+  font-size: 24px;
+  width: 100%;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+.search-form__button {
+  border: none;
+  background-color: var(--color-white-transparent);
+  border: 1px solid var(--color-blue-1);
+  border-radius: 8px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: 0;
+  color: var(--color-white);
+  width: 60px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.fetch-message {
+  color: #d9dde1;
+  margin-right: 4px;
+}
+
+/* ----- Card Component Styles ----- */
+.card__container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+.card {
+  width: calc(33.3333% - 20px);
+  background-color: var(--color-white);
+  margin: 10px;
+  color: var(--color-black);
+  border-radius: 8px;
+  overflow: hidden;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.card__image__container {
+  height: 200px;
+  width: 100%;
+}
+.card__image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.card__title {
+  padding: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.btn-load {
+  padding: 18px 30px;
+  background: var(--color-white-transparent);
+  border: 2px solid #fff;
+  color: var(--color-white);
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+}
+.btn-load:hover {
+  background-color: var(--color-white);
+  color: #2e51a2;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* ----- Media Queries ----- */
+@media screen and (max-width: 600px) {
+  .card {
+    width: calc(50% - 20px);
+  } 
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@media screen and (max-width: 350px) {
+  .card {
+    width: 100%;
+  } 
 }
